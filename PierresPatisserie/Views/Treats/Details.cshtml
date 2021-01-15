@@ -13,14 +13,21 @@
 
 @if (Model.Flavors.Count == 0)
 {
-  <p>No flavor profile provided</p>
+  <p>No flavor profile provided yet!</p>
 }
 else
 {
   <p>Flavor(s): </p>
   @foreach(var join in Model.Flavors)
   {
-    <p>@Html.ActionLink($"{join.Flavor.FlavorType}", "Details", "Flavors", new { id = join.FlavorId })</p>
+    @using (Html.BeginForm("DeleteFlavor", "Treats"))
+    {
+      <p>
+        <input class="btn-xs btn-danger" type="submit" value="X" />
+        @Html.ActionLink($"{join.Flavor.FlavorType}", "Details", "Flavors", new { id = join.FlavorId })
+        @Html.Hidden("joinId", @join.TreatFlavorId)
+      </p>
+    }
   }
 }
 <hr>
