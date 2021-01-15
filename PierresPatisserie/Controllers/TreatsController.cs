@@ -11,17 +11,23 @@ using PierresPatisserie.Models;
 
 namespace PierresPatisserie.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly PierresPatisserieContext _db;
-    public TreatsController(PierresPatisserieContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+
+    public TreatsController(PierresPatisserieContext db, UserManager<ApplicationUser> userManager)
     {
       _db = db;
+      _userManager = userManager;
     }
-
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View(_db.Treats.ToList());
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      return View(userTreats);
     }
 
     public ActionResult Create()
@@ -30,8 +36,11 @@ namespace PierresPatisserie.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat)
+    public async Task<ActionResult> Create(Treat treat)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      treat.User = currentUser;
       _db.Treats.Add(treat);
       _db.SaveChanges();
       return RedirectToAction("Index");
