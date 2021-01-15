@@ -11,8 +11,7 @@ using PierresPatisserie.Models;
 
 namespace PierresPatisserie.Controllers
 {
-  [Authorize]
-  public class GamesController : Controller
+  public class TreatsController : Controller
   {
     private readonly PierresPatisserieContext _db;
     public TreatsController(PierresPatisserieContext db)

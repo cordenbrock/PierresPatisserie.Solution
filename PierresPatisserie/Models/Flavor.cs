@@ -13,6 +13,6 @@ namespace PierresPatisserie.Models
     public string FlavorType { get; set; }
     public string FlavorDescription { get; set; }
     public virtual ApplicationUser User { get; set; }
-    public virtual ICollection<Treat> Treats { get; set; }
+    public virtual ICollection<TreatFlavor> Treats { get; set; }
   }
 }

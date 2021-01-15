@@ -4,26 +4,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PierresPatisserie.Solution.Models;
+using PierresPatisserie.Models;
 
-namespace PierresPatisserie.Solution.Controllers
+namespace PierresPatisserie.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

@@ -7,11 +7,11 @@ using PierresPatisserie.Models;
 
 namespace PierresPatisserie.Controllers
 {
-  public class GConsolesController : Controller
+  public class FlavorsController : Controller
   {
     private readonly PierresPatisserieContext _db;
 
-    public GConsolesController(PierresPatisserieContext db)
+    public FlavorsController(PierresPatisserieContext db)
     {
       _db = db;
     }
