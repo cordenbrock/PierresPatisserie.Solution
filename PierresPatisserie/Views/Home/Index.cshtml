@@ -1,8 +1,37 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Pierre's Patisserie";
 }
 
+@using PierresPatisserie.Models
+
 <div class="text-center">
-    <h1 class="display-4">Bonjour!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+	<h1 class="display-4">Bonjour!</h1>
+	<p>Welcome to <strong>Pierre's Patisserie</strong>, your home to world-class delicacies</p>
+	<div class="container">
+		<div class="row">
+
+					<div class="col-md-6">
+						<h2>The Flavors</h2>
+						<hr>
+						
+  					@foreach(Flavor flavor in ViewBag.Flavors)
+  					{
+    					<p>@flavor.FlavorType</p>
+  					}
+						
+					</div>
+					<div class="col-md-6">
+						<h2>The Treats</h2>
+						<hr>
+						
+  					@foreach(Treat treat in ViewBag.Treats)
+  					{
+    					<p>@treat.TreatName</p>
+  					}
+						
+						
+					</div>
+
+		</div>
+	</div>
 </div>
