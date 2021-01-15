@@ -1,0 +1,34 @@
+@{
+  Layout ="_Layout";
+}
+
+@model PierresPatisserie.Models.Treat
+
+<h2>Treat's Deets</h2>
+<hr>
+
+<p>Treat: @Model.TreatName</p>
+<p>Price: $@Model.TreatPrice</p>
+<hr>
+
+@if (Model.Flavors.Count == 0)
+{
+  <p>No flavor profile provided</p>
+}
+else
+{
+  <p>Flavor(s): </p>
+  @foreach(var join in Model.Flavors)
+  {
+    <p>@Html.ActionLink($"{join.Flavor.FlavorType}", "Details", "Flavors", new { id = join.FlavorId })</p>
+  }
+}
+<hr>
+
+<p>@Html.ActionLink("Add flavor", "AddFlavor", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete treat", "Delete", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Edit treat", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Back to treats", "Index")</p>
+
+
+

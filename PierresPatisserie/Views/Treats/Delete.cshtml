@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierresPatisserie.Models.Treat
+
+<h2>Delete</h2>
+<hr>
+
+<p>Remoce @Model.TreatName?</p>
+
+@using (@Html.BeginForm())
+{
+  <input class="btn btn-danger" type="submit" value="Delete">
+}
+<hr>
+
+@Html.ActionLink("Back to treats", "Index")
